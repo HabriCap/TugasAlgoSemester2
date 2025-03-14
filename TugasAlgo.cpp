@@ -100,6 +100,40 @@ void cari_lagu(lagu musik[], int jumlah_index) {
     }
     
 }
+
+void edit_lagu( lagu musik[], int jumlah_index) {
+    string cari;
+    cout << "Masukkan judul lagu yang mau diedit : ";
+    getline(cin, cari);
+
+    bool found = false;
+    for (int i = 0; i < jumlah_index; i++) {
+        if (musik[i].judul == cari) {
+            cout << "Lagu ditemukan" << endl;
+            cout << "Judul Lama: " << musik[i].judul << endl;
+            cout << "Masukkan Judul Baru: ";
+            getline(cin, musik[i].judul);
+            cout << "Masukkan Penyanyi Baru: ";
+            getline(cin, musik[i].penyanyi);
+            cout << "Masukkan Genre Baru: ";
+            getline(cin, musik[i].Genre);
+            cout << "Masukkan Tahun Baru: ";
+            cin >> musik[i].tahun;
+            cin.ignore();
+            found = true;
+            sorting(musik, jumlah_index);
+            cout << "Lagu berhasil diperbarui" << endl;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Lagu tidak berhasil ditemukan";
+    }
+}
+
+void Baca_file() {
+
+}
         
 
 int main () {
@@ -107,14 +141,12 @@ int main () {
     string jawaban;
     do {
     cout << "Playlist Lagu" << endl;
-    for (int i = 0; i < jumlah_index; i++)
-	{
-		cout << i + 1 << ". " << musik[i].judul << " - " << musik[i].penyanyi << "(" << musik[i].tahun << ")" << endl;
-	}
     cout << "===================" << endl;
     cout << "1. Tambah Lagu" << endl;
     cout << "2. Cari Lagu" << endl;
-    cout << "3. Keluar" << endl;
+    cout << "3. Tampilkan Lagu" << endl;
+    cout << "4. Edit Lagu" << endl;
+    cout << "5. Keluar" << endl;
     cout << "Pilih Menu : ";
     cin >> pilihan;
     cin.ignore();
@@ -127,7 +159,13 @@ int main () {
     else if (pilihan == 2) {
         cari_lagu(musik, jumlah_index);
     } else if (pilihan == 3) {
-        return 0;
+        for (int i = 0; i < jumlah_index; i++)
+	{
+		cout << i + 1 << ". " << musik[i].judul << " - " << musik[i].penyanyi << "(" << musik[i].tahun << ")" << endl;
+	}
+        
+    } else if (pilihan == 4) {
+        edit_lagu (musik, jumlah_index);
     }
     cout << "mau lanjut? = ";
     cin >> jawaban;
