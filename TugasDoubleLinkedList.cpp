@@ -146,10 +146,10 @@ void printdaribelakang(Node* head){
         return;
     }
     Node* bantu = head;
-    while(bantu->next != NULL){ // buat jalan ke ujung list
+    while(bantu->next != NULL){ 
         bantu = bantu->next;
     }
-    while(bantu != NULL){ // buat jalan dari belakang ke depan
+    while(bantu != NULL){ 
 
         cout << " Buku : " << bantu->judul << ", Penulis : " << bantu->penulis << endl;  
         bantu= bantu->prev;
